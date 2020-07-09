@@ -1,6 +1,7 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
+
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -22,6 +23,7 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 
+
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -37,8 +39,21 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+def moving(valuetopair, search_dict=room):
+    keys_list = []
+    items_list = search_dict.items()
+    for item in search_dict:
+        if item[1] == valuetopair:
+            keys_list.append(item[0])
+    print(keys_list)
+
 # Make a new player object that is currently in the 'outside' room.
 
+player_1 = Player(input("Hello, what is your name?"), room['outside'])
+player_1.starting_room = room['outside']
+
+print(player_1.current_room)
+print(moving(player_1.current_room))
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +64,13 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# running = True
+
+# while running:
+#     print(f"Hello {player_1.p_name}, your current location is {player_1.current_room}")
+#     movement = input('Which direction would you like to go? (north, south, east or west)')
+#     if movement == 'q':
+#         running = False
+    # if movement == 'north':
+    #     player_1.current_room = 
