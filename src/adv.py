@@ -39,21 +39,12 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-def moving(valuetopair, search_dict=room):
-    keys_list = []
-    items_list = search_dict.items()
-    for item in search_dict:
-        if item[1] == valuetopair:
-            keys_list.append(item[0])
-    print(keys_list)
 
 # Make a new player object that is currently in the 'outside' room.
+# input("Hello, what is your name? ").title()
+player_1 = Player("Thomas", room['outside'])
+directions = ['n', 'w', 'e', 's']
 
-player_1 = Player(input("Hello, what is your name?"), room['outside'])
-player_1.starting_room = room['outside']
-
-print(player_1.current_room)
-print(moving(player_1.current_room))
 # Write a loop that:
 #
 # * Prints the current room name
@@ -65,12 +56,18 @@ print(moving(player_1.current_room))
 #
 # If the user enters "q", quit the game.
 
-# running = True
+running = True
 
-# while running:
-#     print(f"Hello {player_1.p_name}, your current location is {player_1.current_room}")
-#     movement = input('Which direction would you like to go? (north, south, east or west)')
-#     if movement == 'q':
-#         running = False
-    # if movement == 'north':
-    #     player_1.current_room = 
+while running:
+    print(f"{player_1.p_name}, your current location is {player_1.current_room}.\n")
+    command = input("Where would you like to go?(north, south, west, or east?) or q to quit.\n").strip().lower().split()[0]
+    command = command[0]
+
+    # running = False
+    
+    if command in directions:
+        player_1.movement(command)
+        continue
+
+    if command == 'q':
+        running = False
