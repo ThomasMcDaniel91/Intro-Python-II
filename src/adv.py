@@ -41,8 +41,8 @@ room['treasure'].s_to = room['narrow']
 
 
 # Make a new player object that is currently in the 'outside' room.
-# input("Hello, what is your name? ").title()
-player_1 = Player("Thomas", room['outside'])
+player = input("Hello, what is your name? ").title()
+player_1 = Player(player, room['outside'])
 directions = ['n', 'w', 'e', 's']
 
 # Write a loop that:
@@ -62,12 +62,9 @@ while running:
     print(f"{player_1.p_name}, your current location is {player_1.current_room}.\n")
     command = input("Where would you like to go?(north, south, west, or east?) or q to quit.\n").strip().lower().split()[0]
     command = command[0]
-
-    # running = False
     
     if command in directions:
         player_1.movement(command)
         continue
-
     if command == 'q':
         running = False
